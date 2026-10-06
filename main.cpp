@@ -1,95 +1,66 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    int rollNo[10];
-    int marks[10];
-
-    int n = 0;
+int main() {
+    int queue[10];
+    int front = 0;
+    int rear = 0;
     int choice;
-    int searchRoll;
 
-    do
-    {
-        cout << "\n\n===== STUDENT MANAGEMENT SYSTEM =====";
-        cout << "\n1. Add Student";
-        cout << "\n2. Display Students";
-        cout << "\n3. Search Student";
+    do {
+        cout << "\n\n===== BANK TOKEN SYSTEM =====";
+        cout << "\n1. Issue Token";
+        cout << "\n2. Display Tokens";
+        cout << "\n3. Serve Customer";
         cout << "\n4. Exit";
-
         cout << "\nEnter your choice: ";
         cin >> choice;
 
-        // Add Student
-        if (choice == 1)
-        {
-            if (n < 10)
-            {
-                cout << "\nEnter Roll Number: ";
-                cin >> rollNo[n];
-
-                cout << "Enter Marks: ";
-                cin >> marks[n];
-
-                n++;
-
-                cout << "Student Added!";
+        // Issue Token
+        if (choice == 1) {
+            if (rear < 10) {
+                cout << "\nEnter Token Number: ";
+                cin >> queue[rear];
+                rear++;
+                cout << "Token Issued!";
             }
-            else
-            {
-                cout << "\nStudent limit reached!";
+            else {
+                cout << "\nQueue is full!";
             }
         }
 
-        // Display Students
-        else if (choice == 2)
-        {
-            cout << "\n===== STUDENT RECORDS =====\n";
+        // Display Tokens
+        else if (choice == 2) {
+            cout << "\n===== WAITING CUSTOMERS =====\n";
 
-            for (int i = 0; i < n; i++)
-            {
-                cout << "Roll Number: " << rollNo[i];
-                cout << "  Marks: " << marks[i] << endl;
-            }
-        }
-
-        // Search Student
-        else if (choice == 3)
-        {
-            cout << "\nEnter Roll Number to search: ";
-            cin >> searchRoll;
-
-            bool found = false;
-
-            for (int i = 0; i < n; i++)
-            {
-                if (rollNo[i] == searchRoll)
-                {
-                    cout << "\nStudent Found!";
-                    cout << "\nRoll Number: " << rollNo[i];
-                    cout << "\nMarks: " << marks[i];
-
-                    found = true;
-                    break;
+            if (front < rear) {
+                for (int i = front; i < rear; i++) {
+                    cout << "Token: " << queue[i] << endl;
                 }
             }
+            else {
+                cout << "No customers waiting!";
+            }
+        }
 
-            if (!found)
-            {
-                cout << "\nStudent Not Found!";
+        // Serve Customer
+        else if (choice == 3) {
+            if (front < rear) {
+                cout << "\nServing Token: " << queue[front];
+                front++;
+            }
+            else {
+                cout << "\nNo customers waiting!";
             }
         }
 
         // Exit
-        else if (choice == 4)
-        {
+        else if (choice == 4) {
             cout << "\nThank you!";
         }
 
-        // Invalid choice
-        else
-        {
+        // Invalid Choice
+        else {
             cout << "\nInvalid Choice!";
         }
 
