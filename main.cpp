@@ -1,36 +1,99 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
-int main() {
-    int id1, id2, id3;
-    string title1, title2, title3;
+int main()
+{
+    int rollNo[10];
+    int marks[10];
 
-    cout << "Enter Book 1 ID: ";
-    cin >> id1;
-    cout << "Enter Book 1 Title: ";
-    cin >> title1;
+    int n = 0;
+    int choice;
+    int searchRoll;
 
-    cout << "Enter Book 2 ID: ";
-    cin >> id2;
-    cout << "Enter Book 2 Title: ";
-    cin >> title2;
+    do
+    {
+        cout << "\n\n===== STUDENT MANAGEMENT SYSTEM =====";
+        cout << "\n1. Add Student";
+        cout << "\n2. Display Students";
+        cout << "\n3. Search Student";
+        cout << "\n4. Exit";
 
-    cout << "Enter Book 3 ID: ";
-    cin >> id3;
-    cout << "Enter Book 3 Title: ";
-    cin >> title3;
+        cout << "\nEnter your choice: ";
+        cin >> choice;
 
-    cout << "\n===== LIBRARY BOOKS =====";
+        // Add Student
+        if (choice == 1)
+        {
+            if (n < 10)
+            {
+                cout << "\nEnter Roll Number: ";
+                cin >> rollNo[n];
 
-    cout << "\nBook ID: " << id1;
-    cout << "\nBook Title: " << title1;
+                cout << "Enter Marks: ";
+                cin >> marks[n];
 
-    cout << "\n\nBook ID: " << id2;
-    cout << "\nBook Title: " << title2;
+                n++;
 
-    cout << "\n\nBook ID: " << id3;
-    cout << "\nBook Title: " << title3;
+                cout << "Student Added!";
+            }
+            else
+            {
+                cout << "\nStudent limit reached!";
+            }
+        }
+
+        // Display Students
+        else if (choice == 2)
+        {
+            cout << "\n===== STUDENT RECORDS =====\n";
+
+            for (int i = 0; i < n; i++)
+            {
+                cout << "Roll Number: " << rollNo[i];
+                cout << "  Marks: " << marks[i] << endl;
+            }
+        }
+
+        // Search Student
+        else if (choice == 3)
+        {
+            cout << "\nEnter Roll Number to search: ";
+            cin >> searchRoll;
+
+            bool found = false;
+
+            for (int i = 0; i < n; i++)
+            {
+                if (rollNo[i] == searchRoll)
+                {
+                    cout << "\nStudent Found!";
+                    cout << "\nRoll Number: " << rollNo[i];
+                    cout << "\nMarks: " << marks[i];
+
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                cout << "\nStudent Not Found!";
+            }
+        }
+
+        // Exit
+        else if (choice == 4)
+        {
+            cout << "\nThank you!";
+        }
+
+        // Invalid choice
+        else
+        {
+            cout << "\nInvalid Choice!";
+        }
+
+    } while (choice != 4);
 
     return 0;
 }
